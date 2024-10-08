@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mengelola Array</title>
+  </head>
+  <body>
+    <script>
+      // Data awal
+      const angka = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+      // Fungsi untuk memeriksa apakah angka ganjil
+      function isOdd(number) {
+        return number % 2 === 0;
+      }
+
+      // Menggunakan method map untuk mengubah setiap elemen array
+      const hasil = angka.map(isOdd);
+
+      // Menampilkan hasil ke console
+      console.log(hasil); // Output: [false, true, false, true, false, true, false, true, false]
+      // ...
+      document.write('<p>Output: [' + hasil + ']</p>');
+    </script>
+  </body>
+</html>
