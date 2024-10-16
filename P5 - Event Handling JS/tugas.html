@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Custom Event</title>
+</head>
+
+<body>
+    <div id="message" style="display: none; background: lightgreen;"></div>
+    <button id="btn-submit">Daftar Sekarang</button>
+    
+    <script>
+        // Membuat object custom event
+        const eventRegisterComplete = new Event('register-complete');
+
+        // Membuat object element DOM
+        const messageElement = document.getElementById('message');
+        const btnSubmit = document.getElementById('btn-submit');
+        
+        // Membuat counter untuk menghitung jumlah klik
+        let clickCount = 0;
+        
+        // Handle untuk custom event
+        document.addEventListener('register-complete', function (e) {
+            // Menampilkan pesan dan jumlah klik
+            messageElement.style.display = "flex";
+            messageElement.innerText = `Tombol sudah diklik ${clickCount} kali.`;
+        });
+
+        // Handle untuk event klik pada button
+        btnSubmit.addEventListener('click', function (e){
+            // Menambah jumlah klik
+            clickCount++;
+
+            // Trigger custom event register-complete
+            document.dispatchEvent(eventRegisterComplete);
+        });
+    </script>
+</body>
+</html>
