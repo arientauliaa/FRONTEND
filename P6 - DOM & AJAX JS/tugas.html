@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aplikasi Belanja Buah</title>
+</head>
+<body>
+    <input type="text" id="namaBuah" placeholder="Masukkan nama buah...">
+    <button onclick="beliBuah()">Beli</button>
+
+    <div id="dataPembelian">
+        <h2 id="h2">Data Pembelian :</h2>
+        <p>Nama Buah : <span id="namaBuahHasil"></span></p>
+        <p>Harga / Kg : <span id="hargaBuahHasil"></span></p>
+        <p>Diskon : <span id="diskonBuahHasil"></span></p>
+    </div>
+
+    <script>
+        document.getElementById("dataPembelian").style.fontFamily = "poppins";
+        document.getElementById("h2").style.fontSize = "x-large";
+        
+        function beliBuah() {
+            const namaBuahInput = document.getElementById('namaBuah').value.toLowerCase(); // Ubah ke huruf kecil untuk case-insensitive
+            const dataBuah = {
+                nanas: { harga: 7500, diskon: 5 },
+                anggur: { harga: 35000, diskon: 15 },
+                melon: { harga: 12500, diskon: 10 }
+            };
+
+            if (dataBuah.hasOwnProperty(namaBuahInput)) {
+                const buah = dataBuah[namaBuahInput];
+                document.getElementById('namaBuahHasil').textContent = namaBuahInput;
+                document.getElementById('hargaBuahHasil').textContent = buah.harga + '/kg';
+                document.getElementById('diskonBuahHasil').textContent = buah.diskon + '%';
+            } else {
+                alert('Nama buah tidak ditemukan');
+            }
+        }
+    </script>
+</body>
+</html>

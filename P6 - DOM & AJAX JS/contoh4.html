@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click untuk menampilkan konfirmasi.</p>
+<button onclick="myFunction()">Hapus</button>
+<p id="konfirmasi"> </p>
+
+<script>
+function myFunction() {
+    var txt;
+    var r = confirm("Apakah mau di hapus!");
+    if (r == true) {
+        txt = "Data telah dihapus!";
+    } else {
+        txt = "Kamu batal menghapus data!";
+    }
+    document.getElementById("konfirmasi").innerHTML = txt;
+}
+</script>
+
+</body>
+</html>
