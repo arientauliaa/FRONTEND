@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script src="https://scnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<body> 
+<div id="main" data-loading="true"></div>
+<form>
+    <select name="package" id="package">
+        <option data-price="100000" data-discount="10" data-tax="5">Paket 1</option>
+        <option data-price="150000" data-discount="10" data-tax="10">Paket 2</option>
+        <option data-price="200000" data-discount="10" data-tax="15">Paket 3</option>
+    </select>
+
+    <div>
+        <label for="price">Harga</label>
+        <input type="text" name="price" readonly />
+        <br>
+        <label for="price">Discount</label>
+        <input type="text" name="discount" readonly />
+        <br>
+        <label for="tax">Pajak</label>
+        <input type="text" name="tax" readonly />
+        <br>
+        <h4>Total: <span id="total">0</span></h4>
+    </div>
+</form>
+
+    <script>
+        $('#package').on('change', function() {
+            const price = $('#package option:selected').data('price');
+            const discount = $('#package option:selected').data('discount');
+            const tax = $('#package option:selected').data('tax');
+
+            const totalDiscount = (price * discount / 100);
+            const totalTax = (price * tax / 100);
+            const total = price - totalDiscount + totalTax;
+
+            $('[name=price]').val(`Rp ${price}`);
+            $('[name=discount]').val(`Rp ${totalDiscount}`);
+            $('[name=tax]').val(`Rp ${totalTax}`);
+
+            $('#total').text(`Rp ${total}`);
+        });
+    </script>
+</body>
+</html>
