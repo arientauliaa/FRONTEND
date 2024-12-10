@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Belajar jQuery</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tombol").click(function () {
+                var nilai1 = $("#satu:checked").val();
+                var nilai2 = $("#dua:checked").val();
+                var nilai3 = $("#tiga:checked").val();
+
+                if (nilai1 === undefined) nilai1 = "";
+                if (nilai2 === undefined) nilai2 = "";
+                if (nilai3 === undefined) nilai3 = "";
+
+                alert(nilai1 + " " + nilai2 + " " + nilai3);
+            });
+        });
+    </script>
+</head>
+<body>
+    Saya itu:
+    <input type="checkbox" id="satu" value="Saya Pilih Satu"> Satu<br>
+    <input type="checkbox" id="dua" value="Saya Pilih Dua"> Dua<br>
+    <input type="checkbox" id="tiga" value="Saya Pilih Tiga"> Tiga<br><br>
+    <button id="tombol">Ambil Nilai</button>
+</body>
+</html>

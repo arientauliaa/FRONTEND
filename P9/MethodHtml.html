@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Belajar Jquery STIKOM</title>
+        <script src="jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+
+                $("#tombol").click(function() {
+                    var nilai = $("#paragraf").html();
+                    alert(nilai);
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <p id ="paragraf">
+            Sedang Belajar <em>jQuery</em> di <b>STIKOM</b>
+        </p>
+    <button id="tombol">Ambil Nilai</>button>
+    </body>
+</html>

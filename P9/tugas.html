@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Spotify Wrap</title>
+    <style>
+        body {
+            font-family: Poppins;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .rider-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .penyanyi {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .penyanyi:hover {
+            transform: scale(1.05);
+        }
+        .penyanyi img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .penyanyi button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .penyanyi button:hover {
+            background-color: #333;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .modal-content img {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modal-content h2 {
+            margin-top: 15px;
+            font-size: 24px;
+            color: #333;
+        }
+        .modal-content p {
+            margin-top: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arienta's Spotify Wrap 2024</h1>
+    <div class="rider-container">
+        <div class="penyanyi" data-nama="LANY" data-deskripsi="LANY adalah grup musik pop rock asal Los Angeles, Amerika Serikat. Dibentuk di Nashville pada tahun 2014, band ini terdiri dari Paul Jason Klein dan Jake Clifford Goss." 
+            data-img="https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO2qrZLy-default.jpg">
+            <img src="https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO2qrZLy-default.jpg" alt="LANY">
+            <button>Lihat Deskripsi</button>
+        </div>
+        <div class="penyanyi" data-nama="NIKI" data-deskripsi="Nicole Zefanya, yang juga dikenal dengan nama panggung NIKI, adalah penyanyi dan penulis lagu Indonesia. Niki merupakan artis Indonesia paling populer di Spotify dengan lebih dari 2,8 miliar pemutaran, melampaui Rich Brian pada Januari 2024." 
+            data-img="https://i.scdn.co/image/ab67706f000000020753991ded02fee0152a45cf">
+            <img src="https://i.scdn.co/image/ab67706f000000020753991ded02fee0152a45cf" alt="NIKI">
+            <button>Lihat Deskripsi</button>
+        </div>
+        <div class="penyanyi" data-nama="Taylor Swift" data-deskripsi="Taylor Alison Swift adalah pemeran, penyanyi-penulis lagu berkebangsaan Amerika Serikat. Penulisan lagu naratifnya, yang sering berpusat di sekitar kehidupan pribadinya, telah menerima pujian kritis dan liputan media yang luas." 
+            data-img="https://i.scdn.co/image/ab67706f0000000252feef11af8c9d412769ec5a">
+            <img src="https://i.scdn.co/image/ab67706f0000000252feef11af8c9d412769ec5a" alt="Taylor">
+            <button>Lihat Deskripsi</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImg" src="" alt="penyanyi">
+            <h2 id="modalNama"></h2>
+            <p id="modalDeskripsi"></p>
+        </div>
+    </div>
+
+    <script>
+        // Ambil elemen modal
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("modalImg");
+        const modalNama = document.getElementById("modalNama");
+        const modalDeskripsi = document.getElementById("modalDeskripsi");
+        const spanClose = document.querySelector(".close");
+
+        // Tambahkan event listener pada setiap penyanyi
+        document.querySelectorAll(".penyanyi").forEach(penyanyi => {
+            penyanyi.querySelector("button").addEventListener("click", function() {
+                const nama = penyanyi.getAttribute("data-nama");
+                const deskripsi = penyanyi.getAttribute("data-deskripsi");
+                const imgSrc = penyanyi.getAttribute("data-img");
+
+                modalNama.textContent = nama;
+                modalDeskripsi.textContent = deskripsi;
+                modalImg.src = imgSrc;
+
+                modal.style.display = "block";
+            });
+        });
+
+        // Tutup modal
+        spanClose.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>

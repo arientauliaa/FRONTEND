@@ -1,0 +1,42 @@
+<!DOCTYPE html> <head>
+    <meta charset="UTF-8"> <title>Belajar jQuery</title> <script src="jquery.js"></script> <script>
+        // Ketika dokumen HTML sudah selesai dimuat
+        $(document).ready(function() {
+            // Fungsi untuk menambahkan baris baru ke tabel
+            $("#tambah").click(function() {
+                // Mendapatkan nilai dari input dengan id "nama_kota"
+                var nilai = $("#nama_kota").val();
+                // Membuat elemen baris baru (<tr>) dan sel data (<td>)
+                var baris_baru = "<tr><td>" + nilai + "</td></tr>";
+                // Menambahkan baris baru ke dalam tabel dengan id "tabel_kota"
+                $("#tabel_kota").append(baris_baru);
+            });
+        });
+    </script>
+</head>
+<body>
+    <table style="
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid black;
+        margin-top: 20px;
+    ">
+        <thead>
+            <tr>
+                <th>Kota</th>
+            </tr>
+        </thead>
+        <tbody id="tabel_kota">
+        </tbody>
+    </table>
+    <input type="text" id="nama_kota" value=""> Kota:
+    <button id="tambah">Tambah Kota</button>
+    <table id="tabel_kota">
+      <tr><th>Nama Kota</th></tr>
+      <tr><td>Bandung</td></tr>
+      <tr><td>Jakarta</td></tr>
+      <tr><td>Makassar</td></tr>
+      <tr><td>Medan</td></tr>
+    </table>
+</body>
+</html>
